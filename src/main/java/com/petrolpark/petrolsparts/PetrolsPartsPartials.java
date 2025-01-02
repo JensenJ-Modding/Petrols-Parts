@@ -26,8 +26,12 @@ public class PetrolsPartsPartials {
     DIFFERENTIAL_EAST_GEAR = block("differential/east_gear"),
     DIFFERENTIAL_WEST_GEAR = block("differential/west_gear"),
     DIFFERENTIAL_INPUT_SHAFT = block("differential/input_shaft"),
-    DIFFERENTIAL_CONTROL_SHAFT = block("differential/control_shaft");
-    
+    DIFFERENTIAL_CONTROL_SHAFT = block("differential/control_shaft"),
+
+    // Hydraulic Transmission
+    HYDRAULIC_TRANSMISSION_INNER = block("hydraulic_transmission/inner"),
+    HYDRAULIC_TRANSMISSION_PISTON = block("hydraulic_transmission/piston"),
+    HYDRAULIC_TRANSMISSION_SEGMENT = block("hydraulic_transmission/segment");
 
     private static PartialModel block(String path) {
         return new PartialModel(PetrolsParts.asResource("block/"+path));

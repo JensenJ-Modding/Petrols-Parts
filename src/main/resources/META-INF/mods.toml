@@ -38,13 +38,13 @@ description='''New and unique kinetic components for Create.'''
 [[dependencies.petrolsparts]]
 	modId="petrolpark"
 	mandatory=true
-	versionRange="[1.0.1,)"
+	versionRange="[1.1.0,)"
 	ordering="AFTER"
 	side="BOTH"
 
 [[dependencies.petrolsparts]]
 	modId="destroy"
 	mandatory=false
-	versionRange="[0.1.0]"
+	versionRange="(0.0.8,)"
 	ordering="AFTER"
 	side="BOTH"

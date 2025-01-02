@@ -13,6 +13,9 @@ import com.petrolpark.petrolsparts.content.differential.DifferentialRenderer;
 import com.petrolpark.petrolsparts.content.differential.DummyDifferentialBlockEntity;
 import com.petrolpark.petrolsparts.content.double_cardan_shaft.DoubleCardanShaftBlockEntity;
 import com.petrolpark.petrolsparts.content.double_cardan_shaft.DoubleCardanShaftRenderer;
+import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionBlockEntity;
+import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionInstance;
+import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionRenderer;
 import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetBlockEntity;
 import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetInstance;
 import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetRenderer;
@@ -59,6 +62,13 @@ public class PetrolsPartsBlockEntityTypes {
     public static final BlockEntityEntry<DummyDifferentialBlockEntity> DUMMY_DIFFERENTIAL = REGISTRATE
         .blockEntity("dummy_differential", DummyDifferentialBlockEntity::new)
         .validBlock(PetrolsPartsBlocks.DUMMY_DIFFERENTIAL)
+        .register();
+
+    public static final BlockEntityEntry<HydraulicTransmissionBlockEntity> HYDRAULIC_TRANSMISSION = REGISTRATE
+        .blockEntity("hydraulic_transmission", HydraulicTransmissionBlockEntity::new)
+        .instance(() -> HydraulicTransmissionInstance::new)
+        .validBlock(PetrolsPartsBlocks.HYDRAULIC_TRANSMISSION)
+        .renderer(() -> HydraulicTransmissionRenderer::new)
         .register();
 
     public static final BlockEntityEntry<LongShaftBlockEntity> LONG_SHAFT = REGISTRATE

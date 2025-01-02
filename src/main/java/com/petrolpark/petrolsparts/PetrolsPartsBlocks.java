@@ -11,7 +11,9 @@ import com.petrolpark.petrolsparts.content.colossal_cogwheel.ColossalCogwheelBlo
 import com.petrolpark.petrolsparts.content.differential.DifferentialBlock;
 import com.petrolpark.petrolsparts.content.differential.DummyDifferentialBlock;
 import com.petrolpark.petrolsparts.content.double_cardan_shaft.DoubleCardanShaftBlock;
+import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionBlock;
 import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetBlock;
+import com.petrolpark.tube.TubeBlockItem;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
 import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
@@ -88,6 +90,15 @@ public class PetrolsPartsBlocks {
         ).transform(TagGen.pickaxeOnly())
         .item()
         .transform(ModelGen.customItemModel())
+        .register();
+
+    public static final BlockEntry<HydraulicTransmissionBlock> HYDRAULIC_TRANSMISSION = REGISTRATE.block("hydraulic_transmission", HydraulicTransmissionBlock::new)
+        .initialProperties(AllBlocks.MECHANICAL_CRAFTER)
+        .properties(p -> p
+            .noOcclusion()
+        ).transform(TagGen.axeOrPickaxe())
+        .item(TubeBlockItem::new)
+        .build()
         .register();
 
     public static final BlockEntry<LongShaftBlock> LONG_SHAFT = REGISTRATE.block("long_shaft", LongShaftBlock::new)
