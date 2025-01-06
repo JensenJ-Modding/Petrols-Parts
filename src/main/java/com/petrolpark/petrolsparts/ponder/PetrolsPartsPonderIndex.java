@@ -33,6 +33,10 @@ public class PetrolsPartsPonderIndex {
         HELPER.forComponents(PetrolsPartsBlocks.DOUBLE_CARDAN_SHAFT)
             .addStoryBoard("double_cardan_shaft", PetrolsPartsScenes::doubleCardanShaft);
 
+        // Hydraulic Transmission
+        HELPER.forComponents(PetrolsPartsBlocks.HYDRAULIC_TRANSMISSION)
+            .addStoryBoard("hydraulic_transmission", PetrolsPartsScenes::hydraulicTransmission);
+
         // Large Coaxial Cogwheel
         CREATE_HELPER.forComponents(PetrolsPartsBlocks.LARGE_COAXIAL_GEAR)
             .addStoryBoard("cog/speedup", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::cogsSpeedUp)
@@ -56,6 +60,7 @@ public class PetrolsPartsPonderIndex {
             .add(PetrolsPartsBlocks.DIFFERENTIAL)
             .add(PetrolsPartsBlocks.DOUBLE_CARDAN_SHAFT)
             .add(PetrolsPartsBlocks.LARGE_COAXIAL_GEAR)
+            .add(PetrolsPartsBlocks.HYDRAULIC_TRANSMISSION)
             .add(PetrolsPartsBlocks.PLANETARY_GEARSET)
         ;
     };

@@ -7,6 +7,10 @@ import com.petrolpark.petrolsparts.content.coaxial_gear.CoaxialGearBlockItem.Gea
 import com.petrolpark.petrolsparts.content.coaxial_gear.CoaxialGearBlockItem.ShaftOnGearPlacementHelper;
 import com.petrolpark.petrolsparts.core.advancement.PetrolsPartsAdvancementTrigger;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
+import com.simibubi.create.foundation.item.KineticStats;
+import com.simibubi.create.foundation.item.TooltipHelper.Palette;
+import com.simibubi.create.foundation.item.TooltipModifier;
 import com.simibubi.create.foundation.placement.PlacementHelpers;
 
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +30,12 @@ public class PetrolsParts {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
+
+    static {
+		REGISTRATE.setTooltipModifierFactory(item -> {
+			return new ItemDescription.Modifier(item, Palette.STANDARD_CREATE).andThen(TooltipModifier.mapNull(KineticStats.create(item)));
+		});
+	};
 
     public static ResourceLocation asResource(String path) {
         return new ResourceLocation(MOD_ID, path);

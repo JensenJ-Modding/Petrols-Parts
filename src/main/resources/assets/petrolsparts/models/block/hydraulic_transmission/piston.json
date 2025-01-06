@@ -8,9 +8,9 @@
 	"elements": [
 		{
 			"name": "Piston",
-			"from": [6, 11, 2],
-			"to": [10, 15, 17],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 11, 16]},
+			"from": [6, 11, 0.5],
+			"to": [10, 15, 15.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 11, 14]},
 			"faces": {
 				"north": {"uv": [0, 3, 1, 4], "texture": "#0"},
 				"east": {"uv": [0, 4, 1, 7.75], "rotation": 90, "texture": "#0"},
@@ -20,6 +20,5 @@
 				"down": {"uv": [0, 4, 1, 7.75], "texture": "#0"}
 			}
 		}
-	],
-	"display": {}
+	]
 }

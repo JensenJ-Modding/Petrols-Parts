@@ -10,7 +10,7 @@ import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
 import net.minecraft.core.Direction;
 
 public class HydraulicTransmissionInstance extends SingleRotatingInstance<HydraulicTransmissionBlockEntity> {
-
+    
     public HydraulicTransmissionInstance(MaterialManager materialManager, HydraulicTransmissionBlockEntity blockEntity) {
         super(materialManager, blockEntity);
     };
@@ -18,7 +18,7 @@ public class HydraulicTransmissionInstance extends SingleRotatingInstance<Hydrau
     @Override
     protected Instancer<RotatingData> getModel() {
         Direction facing = blockEntity.getBlockState().getValue(HydraulicTransmissionBlock.FACING);
-        return getRotatingMaterial().getModel(PetrolsPartsPartials.HYDRAULIC_TRANSMISSION_INNER, blockEntity.getBlockState(), facing, () -> KineticsHelper.rotateToFace(facing));
+        return getRotatingMaterial().getModel(PetrolsPartsPartials.HYDRAULIC_TRANSMISSION_INNER, blockEntity.getBlockState(), facing, () -> KineticsHelper.rotateToFace(facing.getOpposite()));
     };
     
 };

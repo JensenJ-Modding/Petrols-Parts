@@ -480,6 +480,37 @@ public class PetrolsPartsScenes {
         scene.markAsFinished();
     };  
 
+    public static void hydraulicTransmission(SceneBuilder scene, SceneBuildingUtil util) {
+        scene.title("hydraulic_transmission", "This text is defined in a language file.");
+        scene.configureBasePlate(0, 0, 5);
+        scene.showBasePlate();
+        Selection gauge = util.select.position(1, 4, 4);
+        scene.world.setKineticSpeed(gauge, 0f);
+
+        scene.idle(10);
+        scene.world.showSection(util.select.position(5, 0, 2), Direction.WEST);
+        scene.idle(10);
+        scene.world.showSection(util.select.position(4, 1, 2), Direction.DOWN);
+        scene.idle(10);
+        scene.world.showSection(util.select.fromTo(1, 1, 4, 1, 4, 4), Direction.DOWN);
+        scene.overlay.showText(80)
+            .text("This text is defined in a language file.")
+            .independent();
+        scene.idle(100);
+
+        scene.world.showSection(util.select.fromTo(1, 1, 1, 3, 4, 3), Direction.EAST);
+        scene.idle(10);
+        scene.world.setKineticSpeed(gauge, 16f);
+
+        scene.overlay.showText(80)
+            .text("This text is defined in a language file.")
+            .pointAt(util.vector.blockSurface(util.grid.at(1, 4, 3), Direction.EAST))
+            .attachKeyFrame();
+        scene.idle(100);
+
+        scene.markAsFinished();
+    };
+    
     public static void planetaryGearset(SceneBuilder scene, SceneBuildingUtil util) {
         scene.title("planetary_gearset", "This text is defined in a language file.");
         scene.configureBasePlate(0, 0, 3);
@@ -513,5 +544,4 @@ public class PetrolsPartsScenes {
         scene.markAsFinished();
     };
 
-    
 };

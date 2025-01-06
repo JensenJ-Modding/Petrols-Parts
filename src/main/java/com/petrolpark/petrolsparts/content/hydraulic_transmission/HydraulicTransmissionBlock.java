@@ -34,18 +34,18 @@ public class HydraulicTransmissionBlock extends DirectionalKineticBlock implemen
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        IBE.onRemove(pState, pLevel, pPos, pNewState);
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        IBE.onRemove(pState, pLevel, pPos, pNewState);
     };
 
     @Override
     public double getTubeSegmentRadius() {
-        return 7 / 16d;
+        return 4 / 16d;
     };
 
     @Override
     public double getTubeSegmentLength() {
-        return 4 / 16d;
+        return 3.5 / 16d;
     };
 
     @Override

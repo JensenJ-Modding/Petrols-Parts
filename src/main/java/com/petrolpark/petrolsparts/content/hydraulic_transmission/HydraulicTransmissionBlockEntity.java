@@ -2,6 +2,8 @@ package com.petrolpark.petrolsparts.content.hydraulic_transmission;
 
 import java.util.List;
 
+import com.petrolpark.petrolsparts.PetrolsPartsBlockEntityTypes;
+import com.petrolpark.tube.ITubeBlockEntity;
 import com.petrolpark.tube.TubeBehaviour;
 import com.petrolpark.util.MathsHelper;
 import com.simibubi.create.content.kinetics.base.IRotate;
@@ -13,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
-public class HydraulicTransmissionBlockEntity extends KineticBlockEntity {
+public class HydraulicTransmissionBlockEntity extends KineticBlockEntity implements ITubeBlockEntity {
 
     public TubeBehaviour tube;
 
@@ -24,7 +26,7 @@ public class HydraulicTransmissionBlockEntity extends KineticBlockEntity {
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
-        tube = new TubeBehaviour(this, this::invalidateRenderBoundingBox);
+        tube = new TubeBehaviour(this);
         behaviours.add(tube);
     };
 
@@ -35,9 +37,35 @@ public class HydraulicTransmissionBlockEntity extends KineticBlockEntity {
     };
 
     @Override
+    public void invalidateTubeRenderBoundingBox() {
+        invalidateRenderBoundingBox();
+    };
+
+    @Override
     protected AABB createRenderBoundingBox() {
         if (tube == null || !tube.isController() || tube.getSpline() == null) return super.createRenderBoundingBox();
         return MathsHelper.expandToInclude(tube.getSpline().getOccupiedVolume(), getBlockPos());
+    };
+
+    @Override
+    public void onSpeedChanged(float previousSpeed) {
+        super.onSpeedChanged(previousSpeed);
+        updatePartnerSpeed();
+    };
+
+    @Override
+    public void afterTubeConnect() {
+        updateSpeed = true;
+        updatePartnerSpeed();
+    };
+
+    @Override
+    public void beforeTubeDisconnect() {
+        detachKinetics();;
+    };
+
+    public void updatePartnerSpeed() {
+        if (tube.getOtherEndPos() != null) getLevel().getBlockEntity(tube.getOtherEndPos(), PetrolsPartsBlockEntityTypes.HYDRAULIC_TRANSMISSION.get()).ifPresent(be -> be.updateSpeed = true);
     };
 
     @Override
@@ -48,7 +76,7 @@ public class HydraulicTransmissionBlockEntity extends KineticBlockEntity {
 
     @Override
     public float propagateRotationTo(KineticBlockEntity target, BlockState stateFrom, BlockState stateTo, BlockPos diff, boolean connectedViaAxes, boolean connectedViaCogs) {
-        if (target.getBlockPos() == tube.getOtherEndPos()) {
+        if (target.getBlockPos().equals(tube.getOtherEndPos())) {
             return 1f;
         };
         return 0f;
