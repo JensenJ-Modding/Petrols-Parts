@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -56,6 +57,11 @@ public class HydraulicTransmissionBlock extends DirectionalKineticBlock implemen
     @Override
     public int getItemsForTubeLength(double length) {
         return (int)Math.round(length / 0.5d);
+    };
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return defaultBlockState().setValue(FACING, context.getClickedFace());
     };
 
     @Override
