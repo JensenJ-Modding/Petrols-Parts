@@ -11,7 +11,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,6 +23,12 @@ public class HydraulicTransmissionBlock extends DirectionalKineticBlock implemen
 
     public HydraulicTransmissionBlock(Properties properties) {
         super(properties);
+    };
+
+    @Override
+    public InteractionResult onWrenched(BlockState state, UseOnContext context) {
+        if (tryReconnect(context)) return InteractionResult.SUCCESS;
+        return super.onWrenched(state, context);
     };
 
     @Override
