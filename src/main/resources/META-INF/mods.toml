@@ -24,7 +24,7 @@ description='''New and unique kinetic components for Create.'''
 [[dependencies.petrolsparts]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.2.0]"
+    versionRange="[1.20.1]"
     ordering="NONE"
     side="BOTH"
     
@@ -38,7 +38,7 @@ description='''New and unique kinetic components for Create.'''
 [[dependencies.petrolsparts]]
 	modId="petrolpark"
 	mandatory=true
-	versionRange="[1.1.0,)"
+	versionRange="[1.2.0,)"
 	ordering="AFTER"
 	side="BOTH"
 
