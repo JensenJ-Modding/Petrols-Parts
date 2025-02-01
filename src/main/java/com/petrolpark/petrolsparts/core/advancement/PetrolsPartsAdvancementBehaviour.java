@@ -3,7 +3,7 @@ package com.petrolpark.petrolsparts.core.advancement;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import com.petrolpark.block.entity.behaviour.AbstractRememberPlacerBehaviour;
+import com.petrolpark.compat.create.block.entity.behaviour.AbstractRememberPlacerBehaviour;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 
