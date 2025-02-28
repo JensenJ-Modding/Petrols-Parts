@@ -1,6 +1,6 @@
 package com.petrolpark.petrolsparts.core.advancement;
 
-import com.petrolpark.advancement.SimpleAdvancementTrigger;
+import com.petrolpark.data.advancement.SimpleAdvancementTrigger;
 import com.petrolpark.petrolsparts.PetrolsParts;
 import com.simibubi.create.foundation.utility.Lang;
 
