@@ -42,8 +42,8 @@ public class ChainedCogwheelRenderer extends KineticBlockEntityRenderer<ChainedC
      */
     @Override
     protected void renderSafe(ChainedCogwheelBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
-        if (VisualizationManager.supportsVisualization(be.getLevel()))
-            return;
+        //if (VisualizationManager.supportsVisualization(be.getLevel())) //TODO: instance
+        //    return;
         BlockState state = getRenderedBlockState(be);
         if (state == null) return;
 

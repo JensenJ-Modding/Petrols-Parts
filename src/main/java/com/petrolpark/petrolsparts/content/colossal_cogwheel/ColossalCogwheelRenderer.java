@@ -20,7 +20,8 @@ public class ColossalCogwheelRenderer extends KineticBlockEntityRenderer<Colossa
     protected void renderSafe(ColossalCogwheelBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
         BlockState state = be.getBlockState();
         if (!ColossalCogwheelBlock.isController(state)) return;
-        //if (Backend.canUseInstancing(be.getLevel())) return; //TODO instance
+        //if (VisualizationManager.supportsVisualization(be.getLevel())) //TODO: instance
+        //    return;
         BlockPos relativeCenter = ColossalCogwheelBlock.getRelativeCenterPosition(state);
         ms.pushPose();
         // TransformStack.cast(ms)

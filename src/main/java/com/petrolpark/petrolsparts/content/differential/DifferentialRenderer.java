@@ -9,6 +9,7 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntityRenderer;
 
+import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
@@ -31,7 +32,8 @@ public class DifferentialRenderer extends KineticBlockEntityRenderer<Differentia
     @Override
     @SuppressWarnings("null") // It thinks getLevel() might be null
     protected void renderSafe(DifferentialBlockEntity differential, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
-        //if (Backend.canUseInstancing(planetaryGearsetBlockEntity.getLevel())) return;
+        //if (VisualizationManager.supportsVisualization(differential.getLevel())) //TODO: instance
+        //    return;
         if (!differential.hasLevel()) return;
 
 		BlockState state = getRenderedBlockState(differential);

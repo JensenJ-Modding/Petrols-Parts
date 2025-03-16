@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.petrolpark.petrolsparts.PetrolsPartsPartials;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 
+import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
@@ -29,7 +30,8 @@ public class DoubleCardanShaftRenderer extends KineticBlockEntityRenderer<Double
 
     @Override
     protected void renderSafe(DoubleCardanShaftBlockEntity doubleCardanShaftBlockEntity, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
-        //if (Backend.canUseInstancing(doubleCardanShaftBlockEntity.getLevel())) return; //TODO fix
+        if (VisualizationManager.supportsVisualization(doubleCardanShaftBlockEntity.getLevel()))
+            return;
 
         float time = AnimationTickHolder.getRenderTime(doubleCardanShaftBlockEntity.getLevel());
         BlockState state = doubleCardanShaftBlockEntity.getBlockState();
@@ -73,47 +75,39 @@ public class DoubleCardanShaftRenderer extends KineticBlockEntityRenderer<Double
             .translate(shaft1Direction.step().mul(2.5f / 16f))
             .translate(shaft2Direction.step().mul(2.5f / 16f))
             .center()
-            .rotateY(axis == Axis.Z ? 90f : 0f)
-            .rotateX(axis == Axis.Z ? (facesHaveSameSign ? 45f : 135f) : 0f)
-            .rotate(facesHaveSameSign ^ axis != Axis.Y ? 135f : 45f, axis)
+            .rotateYDegrees(axis == Axis.Z ? 90f : 0f)
+            .rotateXDegrees(axis == Axis.Z ? (facesHaveSameSign ? 45f : 135f) : 0f)
+            .rotateDegrees(facesHaveSameSign ^ axis != Axis.Y ? 135f : 45f, axis)
             .uncenter()
             .center()
-                //TODO: This used a different function called rotateZRadians before?
             .rotateZ((axis == Axis.X ? fluctuatingAngle3 : fluctuatingAngle1) * (axis == Axis.X || (axis == Axis.Y ^ facesHaveSameSign) ? 1f : -1f) * (axis == Axis.X ? -1f : 1f))
             .uncenter()
             .renderInto(ms, vbSolid);
 
-
         CachedBuffers.partialFacing(PetrolsPartsPartials.DCS_GIMBAL, state, shaft1Direction).light(light)
-            
             .center()
             .rotate(gimbal1Angle, Direction.get(AxisDirection.POSITIVE, shaft1Direction.getAxis()))
             .center()
-
             .translateBack(DoubleCardanShaftInstance.gimbalTranslation(shaft1Direction))
             .rotate(gimbal1FluctuatingAngle, DoubleCardanShaftInstance.gimbalRotation(shaft1Direction, axis == Axis.Z))
-            .rotateY(axis == Axis.Z && !secondaryPositive ? 90 : 0)
-            .rotateX(axis == Axis.Z ? 90 : 0)
+            .rotateYDegrees(axis == Axis.Z && !secondaryPositive ? 90 : 0)
+            .rotateXDegrees(axis == Axis.Z ? 90 : 0)
             .translate(DoubleCardanShaftInstance.gimbalTranslation(shaft1Direction))
-    
             .uncenter()
             .uncenter()
             .renderInto(ms, vbSolid);
 
         CachedBuffers.partialFacing(PetrolsPartsPartials.DCS_GIMBAL, state, shaft2Direction).light(light)
-            
             .center()
             .rotate(gimbal2Angle, Direction.get(AxisDirection.POSITIVE, shaft2Direction.getAxis()))
             .center()
-
             .translateBack(DoubleCardanShaftInstance.gimbalTranslation(shaft2Direction))
             .rotate(gimbal2FluctuatingAngle, DoubleCardanShaftInstance.gimbalRotation(shaft2Direction, false))
             .translate(DoubleCardanShaftInstance.gimbalTranslation(shaft2Direction))
-
             .uncenter()
             .uncenter()
             .renderInto(ms, vbSolid);
-    };
+    }
     
     @SuppressWarnings("null")
     private float getSpeed(DoubleCardanShaftBlockEntity blockEntity, Direction face) {
