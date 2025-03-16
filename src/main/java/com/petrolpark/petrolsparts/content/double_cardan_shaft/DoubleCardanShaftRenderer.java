@@ -69,7 +69,7 @@ public class DoubleCardanShaftRenderer extends KineticBlockEntityRenderer<Double
         kineticRotationTransform(grip2, doubleCardanShaftBlockEntity, shaft2Direction.getAxis(), gimbal2Angle, light);
         grip2.renderInto(ms, vbSolid);
 
-        CachedBuffers.partial(PetrolsPartsPartials.DCS_CENTER_SHAFT, state)
+        CachedBuffers.partial(PetrolsPartsPartials.DCS_CENTER_SHAFT, state).light(light)
             .translate(shaft1Direction.step().mul(2.5f / 16f))
             .translate(shaft2Direction.step().mul(2.5f / 16f))
             .center()
@@ -83,7 +83,8 @@ public class DoubleCardanShaftRenderer extends KineticBlockEntityRenderer<Double
             .uncenter()
             .renderInto(ms, vbSolid);
 
-        CachedBuffers.partialFacing(PetrolsPartsPartials.DCS_GIMBAL, state, shaft1Direction)
+
+        CachedBuffers.partialFacing(PetrolsPartsPartials.DCS_GIMBAL, state, shaft1Direction).light(light)
             
             .center()
             .rotate(gimbal1Angle, Direction.get(AxisDirection.POSITIVE, shaft1Direction.getAxis()))
@@ -99,7 +100,7 @@ public class DoubleCardanShaftRenderer extends KineticBlockEntityRenderer<Double
             .uncenter()
             .renderInto(ms, vbSolid);
 
-        CachedBuffers.partialFacing(PetrolsPartsPartials.DCS_GIMBAL, state, shaft2Direction)
+        CachedBuffers.partialFacing(PetrolsPartsPartials.DCS_GIMBAL, state, shaft2Direction).light(light)
             
             .center()
             .rotate(gimbal2Angle, Direction.get(AxisDirection.POSITIVE, shaft2Direction.getAxis()))
