@@ -2,8 +2,8 @@ package com.petrolpark.petrolsparts.core.advancement;
 
 import com.petrolpark.data.advancement.SimpleAdvancementTrigger;
 import com.petrolpark.petrolsparts.PetrolsParts;
-import com.simibubi.create.foundation.utility.Lang;
 
+import net.createmod.catnip.lang.Lang;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;

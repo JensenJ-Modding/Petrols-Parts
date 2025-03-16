@@ -10,22 +10,22 @@ import java.util.HashSet;
 
 import javax.annotation.Nullable;
 
+import com.simibubi.create.api.equipment.goggles.IProxyHoveringInformation;
+import net.createmod.catnip.data.Pair;
+import net.createmod.catnip.lang.Lang;
+import net.createmod.catnip.math.VoxelShaper;
+import net.createmod.catnip.placement.IPlacementHelper;
+import net.createmod.catnip.placement.PlacementHelpers;
 import org.joml.Matrix2d;
 
 import com.petrolpark.petrolsparts.PetrolsPartsBlockEntityTypes;
 import com.petrolpark.petrolsparts.PetrolsPartsBlocks;
 import com.simibubi.create.AllShapes;
-import com.simibubi.create.content.equipment.goggles.IProxyHoveringInformation;
 import com.simibubi.create.content.kinetics.base.KineticBlock;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.block.render.MultiPosDestructionHandler;
-import com.simibubi.create.foundation.placement.IPlacementHelper;
-import com.simibubi.create.foundation.placement.PlacementHelpers;
-import com.simibubi.create.foundation.utility.Lang;
-import com.simibubi.create.foundation.utility.Pair;
-import com.simibubi.create.foundation.utility.VoxelShaper;
 
 import io.netty.util.internal.shaded.org.jctools.queues.MessagePassingQueue.Consumer;
 import net.minecraft.client.multiplayer.ClientLevel;

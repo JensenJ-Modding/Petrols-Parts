@@ -14,13 +14,9 @@ import com.petrolpark.petrolsparts.content.differential.DummyDifferentialBlockEn
 import com.petrolpark.petrolsparts.content.double_cardan_shaft.DoubleCardanShaftBlockEntity;
 import com.petrolpark.petrolsparts.content.double_cardan_shaft.DoubleCardanShaftRenderer;
 import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionBlockEntity;
-import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionInstance;
 import com.petrolpark.petrolsparts.content.hydraulic_transmission.HydraulicTransmissionRenderer;
 import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetBlockEntity;
-import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetInstance;
 import com.petrolpark.petrolsparts.content.planetary_gearset.PlanetaryGearsetRenderer;
-import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
-import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntityInstance;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
@@ -34,7 +30,7 @@ public class PetrolsPartsBlockEntityTypes {
 
     public static final BlockEntityEntry<CoaxialGearBlockEntity> COAXIAL_GEAR = REGISTRATE
         .blockEntity("coaxial_gear", CoaxialGearBlockEntity::new)
-        .instance(() -> SingleRotatingInstance::new, false)
+        //.visual(() -> OrientedRotatingVisual.of(CoaxialGearBlock)::new, false)
         .validBlocks(PetrolsPartsBlocks.COAXIAL_GEAR, PetrolsPartsBlocks.LARGE_COAXIAL_GEAR)
         .renderer(() -> BracketedKineticBlockEntityRenderer::new)
         .register();
@@ -66,21 +62,21 @@ public class PetrolsPartsBlockEntityTypes {
 
     public static final BlockEntityEntry<HydraulicTransmissionBlockEntity> HYDRAULIC_TRANSMISSION = REGISTRATE
         .blockEntity("hydraulic_transmission", HydraulicTransmissionBlockEntity::new)
-        .instance(() -> HydraulicTransmissionInstance::new)
+        //.visual(() -> HydraulicTransmissionInstance::new)
         .validBlock(PetrolsPartsBlocks.HYDRAULIC_TRANSMISSION)
         .renderer(() -> HydraulicTransmissionRenderer::new)
         .register();
 
     public static final BlockEntityEntry<LongShaftBlockEntity> LONG_SHAFT = REGISTRATE
         .blockEntity("long_shaft", LongShaftBlockEntity::new)
-        .instance(() -> BracketedKineticBlockEntityInstance::new, false)
+        //.visual(() -> BracketedKineticBlockEntityVisual::new)
         .validBlocks(PetrolsPartsBlocks.LONG_SHAFT)
         .renderer(() -> BracketedKineticBlockEntityRenderer::new)
         .register();
 
     public static final BlockEntityEntry<PlanetaryGearsetBlockEntity> PLANETARY_GEARSET = REGISTRATE
         .blockEntity("planetary_gearset", PlanetaryGearsetBlockEntity::new)
-        .instance(() -> PlanetaryGearsetInstance::new, false)
+        //.visual(() -> PlanetaryGearsetInstance::new, false)
         .validBlocks(PetrolsPartsBlocks.PLANETARY_GEARSET)
         .renderer(() -> PlanetaryGearsetRenderer::new)
         .register();

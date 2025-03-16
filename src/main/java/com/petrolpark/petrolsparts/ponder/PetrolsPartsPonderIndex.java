@@ -1,22 +1,21 @@
 package com.petrolpark.petrolsparts.ponder;
 
-import com.petrolpark.petrolsparts.PetrolsParts;
 import com.petrolpark.petrolsparts.PetrolsPartsBlocks;
-import com.simibubi.create.Create;
-import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
-import com.simibubi.create.foundation.ponder.PonderRegistry;
-import com.simibubi.create.infrastructure.ponder.AllPonderTags;
+import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
+import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
+import net.minecraft.resources.ResourceLocation;
 
 public class PetrolsPartsPonderIndex {
-    
-    public static final PonderRegistrationHelper HELPER = new PonderRegistrationHelper(PetrolsParts.MOD_ID);
-    private static final PonderRegistrationHelper CREATE_HELPER = new PonderRegistrationHelper(Create.ID);
 
-    public static void register() {
+    public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
+        PonderSceneRegistrationHelper<ItemProviderEntry<?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
 
         // Coaxial Gear
-        CREATE_HELPER.forComponents(PetrolsPartsBlocks.COAXIAL_GEAR)
-            .addStoryBoard("cog/small", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::cogAsRelay);
+        //CREATE_HELPER.forComponents(PetrolsPartsBlocks.COAXIAL_GEAR)
+        //    .addStoryBoard("cog/small", KineticsScenes::cogAsRelay);
         HELPER.forComponents(PetrolsPartsBlocks.COAXIAL_GEAR)
             .addStoryBoard("coaxial_gear/shaftless", PetrolsPartsScenes::coaxialGearShaftless)
             .addStoryBoard("coaxial_gear/through", PetrolsPartsScenes::coaxialGearThrough);
@@ -38,23 +37,24 @@ public class PetrolsPartsPonderIndex {
             .addStoryBoard("hydraulic_transmission", PetrolsPartsScenes::hydraulicTransmission);
 
         // Large Coaxial Cogwheel
-        CREATE_HELPER.forComponents(PetrolsPartsBlocks.LARGE_COAXIAL_GEAR)
-            .addStoryBoard("cog/speedup", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::cogsSpeedUp)
-            .addStoryBoard("cog/large", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::largeCogAsRelay, AllPonderTags.KINETIC_RELAYS);
+        //CREATE_HELPER.forComponents(PetrolsPartsBlocks.LARGE_COAXIAL_GEAR)
+        //    .addStoryBoard("cog/speedup", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::cogsSpeedUp)
+        //    .addStoryBoard("cog/large", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::largeCogAsRelay, AllPonderTags.KINETIC_RELAYS);
         HELPER.forComponents(PetrolsPartsBlocks.LARGE_COAXIAL_GEAR)
             .addStoryBoard("coaxial_gear/shaftless", PetrolsPartsScenes::coaxialGearShaftless)
             .addStoryBoard("coaxial_gear/through", PetrolsPartsScenes::coaxialGearThrough);
 
         // Planetary Gearset
-        CREATE_HELPER.forComponents(PetrolsPartsBlocks.PLANETARY_GEARSET)
-            .addStoryBoard("cog/speedup", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::cogsSpeedUp)
-            .addStoryBoard("cog/large", com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes::largeCogAsRelay);
+        //CREATE_HELPER.forComponents(PetrolsPartsBlocks.PLANETARY_GEARSET)
+        //    .addStoryBoard("cog/speedup", KineticsScenes::cogsSpeedUp)
+        //    .addStoryBoard("cog/large", KineticsScenes::largeCogAsRelay);
         HELPER.forComponents(PetrolsPartsBlocks.PLANETARY_GEARSET)
             .addStoryBoard("planetary_gearset", PetrolsPartsScenes::planetaryGearset);
     };
 
-    public static void registerTags() {
-        PonderRegistry.TAGS.forTag(AllPonderTags.KINETIC_RELAYS)
+    public static void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
+        PonderTagRegistrationHelper<RegistryEntry<?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+        HELPER.addToTag(AllCreatePonderTags.KINETIC_RELAYS)
             .add(PetrolsPartsBlocks.COAXIAL_GEAR)
             .add(PetrolsPartsBlocks.COLOSSAL_COGWHEEL)
             .add(PetrolsPartsBlocks.DIFFERENTIAL)
