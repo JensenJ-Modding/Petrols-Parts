@@ -21,7 +21,6 @@ import com.simibubi.create.content.kinetics.simpleRelays.CogwheelBlockItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.ModelGen;
 import com.simibubi.create.foundation.data.TagGen;
-import com.simibubi.create.infrastructure.config.CStress;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.minecraft.world.level.block.SoundType;
@@ -40,7 +39,7 @@ public class PetrolsPartsBlocks {
         .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
         .transform(TagGen.axeOrPickaxe())
         .item(CoaxialGearBlockItem::new)
-        .build()
+        .build().onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<CoaxialGearBlock> LARGE_COAXIAL_GEAR = REGISTRATE.block("large_coaxial_gear", CoaxialGearBlock::large)
@@ -49,23 +48,27 @@ public class PetrolsPartsBlocks {
         .transform(TagGen.axeOrPickaxe())
         .item(CoaxialGearBlockItem::new)
         .build()
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<ChainedCogwheelBlock> CHAINED_COGWHEEL = REGISTRATE.block("chained_cogwheel", ChainedCogwheelBlock::small)
         .initialProperties(AllBlocks.COGWHEEL)
-        .properties(BlockBehaviour.Properties::noOcclusion
-        ).register();
+        .properties(BlockBehaviour.Properties::noOcclusion)
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+        .register();
 
     public static final BlockEntry<ChainedCogwheelBlock> CHAINED_LARGE_COGWHEEL = REGISTRATE.block("chained_large_cogwheel", ChainedCogwheelBlock::large)
         .initialProperties(CHAINED_COGWHEEL)
-        .properties(BlockBehaviour.Properties::noOcclusion
-        ).register();
+        .properties(BlockBehaviour.Properties::noOcclusion)
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+        .register();
 
     public static final BlockEntry<ColossalCogwheelBlock> COLOSSAL_COGWHEEL = REGISTRATE.block("colossal_cogwheel", ColossalCogwheelBlock::new)
         .initialProperties(AllBlocks.LARGE_WATER_WHEEL)
         .properties(BlockBehaviour.Properties::noOcclusion
         ).item(ColossalCogwheelBlockItem::new)
         .transform(ModelGen.customItemModel())
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<DifferentialBlock> DIFFERENTIAL = REGISTRATE.block("differential", DifferentialBlock::new)
@@ -77,11 +80,12 @@ public class PetrolsPartsBlocks {
         ).transform(TagGen.axeOrPickaxe())
         .item(CogwheelBlockItem::new)
         .transform(ModelGen.customItemModel())
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<DummyDifferentialBlock> DUMMY_DIFFERENTIAL = REGISTRATE.block("dummy_differential", DummyDifferentialBlock::new)
         .initialProperties(DIFFERENTIAL)
-
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<DoubleCardanShaftBlock> DOUBLE_CARDAN_SHAFT = REGISTRATE.block("double_cardan_shaft", DoubleCardanShaftBlock::new)
@@ -92,6 +96,7 @@ public class PetrolsPartsBlocks {
         ).transform(TagGen.pickaxeOnly())
         .item()
         .transform(ModelGen.customItemModel())
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<HydraulicTransmissionBlock> HYDRAULIC_TRANSMISSION = REGISTRATE.block("hydraulic_transmission", HydraulicTransmissionBlock::new)
@@ -99,12 +104,12 @@ public class PetrolsPartsBlocks {
         .properties(BlockBehaviour.Properties::noOcclusion
         ).transform(TagGen.axeOrPickaxe())
         .item(TubeBlockItem::new)
-        .build()
+        .build().onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 2.0))
         .register();
 
     public static final BlockEntry<LongShaftBlock> LONG_SHAFT = REGISTRATE.block("long_shaft", LongShaftBlock::new)
         .initialProperties(AllBlocks.SHAFT)
-        .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
+        .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new)).onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
     public static final BlockEntry<PlanetaryGearsetBlock> PLANETARY_GEARSET = REGISTRATE.block("planetary_gearset", PlanetaryGearsetBlock::new)
@@ -116,8 +121,8 @@ public class PetrolsPartsBlocks {
         ).transform(TagGen.axeOrPickaxe())
         .item(CogwheelBlockItem::new)
         .transform(ModelGen.customItemModel())
+        .onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
         .register();
 
-    public static final void register() {};
-
+    public static void register() {};
 };
